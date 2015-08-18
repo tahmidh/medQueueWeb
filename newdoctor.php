@@ -75,7 +75,7 @@ include ("menu.php");?>
                 <td>Service Duration:</td>
                 <td><input class="formtd" type="text" name="name" placeholder="Service Name" id="form_duration" required/></td>
                 <td>Service Price:</td>
-                <td><input class="formtd" type="text" name="name" placeholder="Service Name" id="form_" required/></td>
+                <td><input class="formtd" type="text" name="name" placeholder="Service Name" id="form_price" required/></td>
             </tr>
             <tr>
                 <td>Service Category:</td>
@@ -106,6 +106,18 @@ include ("menu.php");?>
 <div class="container">
     <div class="col-lg-12" align="center" style="padding-top:30px;">
         <div class="btn btn-default" id="save_newService" align="center">Save Services</div>
+    </div>
+</div>
+<div class="container">
+    <div class="col-lg-12">
+        <table class="col-lg-12 table-striped" id="tableService" style="margin: 30px auto;">
+            <tr id="serviceTable">
+                <td>Service Name:</td>
+                <td>Service Duration:</td>
+                <td>Service Price:</td>
+                <td>Action</td>
+            </tr>    
+        </table>
     </div>
 </div>
 <div class="container">
@@ -288,8 +300,9 @@ include ("menu.php");?>
 <div class="container">
     <div class="col-lg-12" align="center" style="padding-top:30px;">
         <div class="btn btn-default" id="save_work" align="center">Save Work</div>
+        <input type="hidden" name="myInput" readonly="readonly" placeholder="Select Appointment Date" id="app_date" /> 
     </div>
-</div>
+</div><input type="date" 
 
 
 

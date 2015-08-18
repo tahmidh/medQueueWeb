@@ -9,7 +9,9 @@ $(document).ready(function() {
         // var service_provider_id = 0;
 
     //callses();
-
+    if (window.location.href.indexOf("newdoctor.php") > -1) {
+        get_available_services();
+    }
     jsDate = new JsDatePick({
         useMode: 2,
         target: "app_date",
@@ -126,29 +128,63 @@ $(document).ready(function() {
         var category = $("#form_catname").val();
         var login_id = $("#form_u_id").val();
         $.ajax({
-                method: "POST",
-                url: "forms/savedoctorPro.php",
-                data: {
-                    qualifications: qualifications,
-                    hospitals: hospitals,
-                    languages: languages,
-                    specialities: specialities,
-                    professional_det: professional_det,
-                    shortbio: shortbio,
-                    login_id: login_id,
-                    category: category
-                }
-            })
-            .done(function(msg) {
-                alert("professional info Saved: " + msg);
-            });
+            method: "POST",
+            url: "forms/savedoctorPro.php",
+            data: {
+                qualifications: qualifications,
+                hospitals: hospitals,
+                languages: languages,
+                specialities: specialities,
+                professional_det: professional_det,
+                shortbio: shortbio,
+                login_id: login_id,
+                category: category
+            }
+        })
+        .done(function(msg) {
+            alert("professional info Saved: " + msg);
+        });
 
     }
 
     $("#save_newService").click(function() {
-        //alert("service Clicked!!!");
+        // alert("service Clicked!!!");
         add_service_details();
+        
     });
+
+    function get_available_services(){
+        var login_id = $("#form_u_id").val();
+        $.ajax({
+            method: "POST",
+            url: "forms/getdoctorSer.php",
+            data: {
+                login_id: login_id
+            }
+        })
+        .done(function(text) {
+
+            console.log("Got Services: " + text);
+            var msg = eval("(function(){return " + text + ";})()");
+            var optionHtml = "";
+            for (var i = 1; i < Object.keys(msg).length; i++) {
+                optionHtml += "<tr class='serviceTableAfter'>";
+                for (var j = 0; j < 3 ; j++) {
+                   optionHtml += '<td>' + msg[i][j] + '</td>';
+                };
+                optionHtml += "<td><div class='btn btn-default' id=''>Edit</div><div class='btn btn-default' id=''>Delete</div></td></tr>";
+            };
+            console.log(optionHtml);
+            if($('.serviceTableAfter').length > 0){
+                $('.serviceTableAfter').remove();
+                $('#serviceTable').after(optionHtml);
+            }else{
+                $('#serviceTable').after(optionHtml);
+            }
+            
+        });
+
+    }
 
     function add_service_details() {
 
@@ -160,21 +196,22 @@ $(document).ready(function() {
         var description = $("#form_serdes").val();
         var login_id = $("#form_u_id").val();
         $.ajax({
-                method: "POST",
-                url: "forms/savedoctorSer.php",
-                data: {
-                    name: name,
-                    duration: duration,
-                    price: price,
-                    currency: currency,
-                    category: category,
-                    description: description,
-                    login_id: login_id
-                }
-            })
-            .done(function(msg) {
-                alert("Services Saved: " + msg);
-            });
+            method: "POST",
+            url: "forms/savedoctorSer.php",
+            data: {
+                name: name,
+                duration: duration,
+                price: price,
+                currency: currency,
+                category: category,
+                description: description,
+                login_id: login_id
+            }
+        })
+        .done(function(msg) {
+            //alert("Services Saved: " + msg);
+            get_available_services();
+        });
 
     }
 
@@ -183,10 +220,6 @@ $(document).ready(function() {
             alert(sessionFromServer);
         });
     }
-    /*$.get("get_session.php", function(sessionFromServer)
-        {
-           alert(sessionFromServer);
-        });*/
 
     $("#select_dep").change(function() {
         var text = JSON.parse($("#select_dep").val());
@@ -415,32 +448,6 @@ $(document).ready(function() {
                 }
             });
     }
-    // function checkPrevApp(time1, time2){
-    //     $.ajax({  method: "POST",  url: "forms/getPrevApp.php",  data: {
-    //         doc_id:doc_id, date:xdate            
-    //     }})
-    //     .done(function( text ) {
-    //         var flag2 =true;
-    //         var msg =  eval("(function(){return " + text + ";})()");
-    //         console.log(msg);
-    //         console.log(Object.keys(msg).length);
-    //         if(Object.keys(msg).length == 1){
-    //             return true;
-    //         }else{
-    //             for (var i = 1; i < Object.keys(msg).length; i++) {
-    //                 console.log("checkPrevApp time" +time1+''+time2+''+msg[i].start_time+''+msg[i].end_time+''+flag2);
-    //                 if(checkOverLap(time1,time2, msg[i].start_time, msg[i].end_time) == true){
-    //                      flag2= true;
-    //                 } else{
-    //                     return false;
-    //                     console.log("time overlaped break");
-    //                 }   
-    //             };
-    //         }
-    //         console.log("return" + flag2);
-    //         return flag2;
-    //     });
-    // }
 
     $("#select_appoint_slot").change(function() {
         service_slot = $("#select_appoint_slot").val();
