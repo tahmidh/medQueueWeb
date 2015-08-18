@@ -397,8 +397,10 @@ $(document).ready(function() {
                 //console.log("msg > "+ msg['Sunday']['start']);
                 if (msg[day] == "") {
                     $('#select_appoint_slot').hide();
-                    $('#appoint_msg').append("<p>Doctor unavailable!</p>");
+                    $('#appoint_msg').append("<p id='a_msg'>Doctor unavailable!</p>");
                 } else {
+                    $('#a_msg').remove();
+                    $('#select_appoint_slot').show();
                     $.ajax({
                             method: "POST",
                             url: "forms/getDuration.php",
