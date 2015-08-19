@@ -5,12 +5,12 @@ include ("menu.php");?>
 
 <div class="hs_page_title">
   <div class="container">
-    <h3>Doctor Registration</h3>
+    <h3>Patient Registration</h3>
     <ul>
       <li><a href="index.php">Home</a></li>
-      <li><a href="#">Doctor Registration</a></li>
-    </ul>
-  </div>
+      <li><a href="#">Patient Registration</a></li>
+  </ul>
+</div>
 </div>
 <div class="container">
     <div class="col-lg-12">
@@ -23,147 +23,171 @@ include ("menu.php");?>
                 <td>Last Name:</td>
                 <td><input type="text" name="name" placeholder="Last Name" id="form_lname" required/></td>
                 <td>User Name:</td>
-                <td><input type="text" name="name" placeholder="Middle Name" id="form_uname" value="<?php echo htmlspecialchars($_SESSION['u_name']); ?>" disabled/></td>
+                <td><input type="text" name="name" id="form_uname" value="<?php echo htmlspecialchars($_SESSION['u_name']); ?>" disabled/></td>
+
             </tr>
             <tr>
                 <td>Email:</td>
                 <td><input type="text" name="name" placeholder="Email" id="form_email" value="<?php echo htmlspecialchars($_SESSION['u_email']); ?>" disabled/></td>
-                <td>Mobile:</td>
+                <td>Mobile Number:</td>
                 <td><input type="text" name="name" placeholder="8801*********" id="form_mobile"/></td>
-                <td>Office Number:</td>
+                <td>Second Number (if any):</td>
                 <td><input type="text" name="name" placeholder="880*******" id="form_ofnum"/></td>
             </tr>
             <tr>
                 <td>Address</td>
-                <td colspan="5"><input type="text" name="name" placeholder="Your Address (Prefered Chamber)" id="form_address"/></td>
+                <td colspan="5"><input type="text" name="name" placeholder="Your Address" id="form_address"/></td>
             </tr>
             <tr>
                 <td>City:</td>
                 <td><select name="city" id="form_city" >
-                        <option value="Dhaka">Dhaka</option>
-                        <option value="Chittagong">Chittagong</option>
-                        <option value="Khulna">Khulna</option>
-                    </select>
-                </td>
-                <td>Zip Code:</td>
-                <td><input type="number" name="name" placeholder="4 digit number" id="form_zip"/></td>
-                <td>Country:</td>
-                <td><select name="login_terminal" id="form_country" >
-                        <option value="Bangladesh">Bangladesh</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>Notes</td>
-                <td colspan="5"><input type="text" name="name" placeholder="Notes (Notes)" id="form_notes"/></td>
-            </tr>
-        </table>
-    </div>
+                    <option value="Dhaka">Dhaka</option>
+                    <option value="Chittagong">Chittagong</option>
+                    <option value="Khulna">Khulna</option>
+                    <option value="Rajshahi">Rajshahi</option>
+                    <option value="Sylhet">Sylhet</option>
+                    <option value="Barisal">Barisal</option>
+                </select>
+            </td>
+            <td>Zip Code:</td>
+            <td><input type="number" name="name" placeholder="4 digit number" id="form_zip"/></td>
+            <td>Country:</td>
+            <td><select name="login_terminal" id="form_country" >
+                <option value="Bangladesh">Bangladesh</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td>Notes (if any):</td>
+        <td colspan="5"><input type="text" name="name" placeholder="Notes (Notes)" id="form_notes"/></td>
+    </tr>
+</table>
 </div>
-<div class="container">
-    <div class="col-lg-12">
-        <h2 class="hs_heading">Expertise / Category Information</h2>
-        <table class="col-lg-12">
-            <tr>
-                <td>Category Name:</td>
-                <td><select name="city" id="form_catname" >
-                        <option value="Other">Other</option>
-                        <option value="Audiologist">Audiologist</option>
-                        <option value="Cardiologist ">Cardiologist </option>
-                        <option value="Dentist">Dentist</option>
-                        <option value=" Ear, Nose, Throat Doctor (ENT)">Ear, Nose & Throat Doctor (ENT)</option>
-                        <option value="Eye Doctor">Eye Doctor</option>
-                        <option value=" Gastroenterologist">Gastroenterologist </option>
-                        <option value="Neurosurgeon">Neurosurgeon</option>
-                        <option value=" Orthopedic ">Orthopedic</option>
-                        <option value=" Primary Care Doctor"> Primary Care Doctor</option>
-                        <option value=" Psychiatrist">Psychiatrist</option> 
-                        <option value=" Radiologist">Radiologist</option>
-                        <option value=" Surgeon"> Surgeon</option>
-                    </select>
-                </td>
-                <td>Description:</td>
-                <td><input type="text" name="name" placeholder="Last Name" id="form_catdes" required/></td>
-            </tr>
-            
-        </table>
-    </div>
-</div>
-<div class="container">
-    <div class="col-lg-12">
-        <h2 class="hs_heading">Services Available</h2>
-        <table class="col-lg-12">
-            <tr>
-                <td>Service Name:</td>
-                <td><input class="formtd" type="text" name="name" placeholder="Service Name" id="form_sername" required/></td>
-                <td>Service Duration:</td>
-                <td><input class="formtd" type="text" name="name" placeholder="Service Name" id="form_duration" required/></td>
-                <td>Service Price:</td>
-                <td><input class="formtd" type="text" name="name" placeholder="Service Name" id="form_" required/></td>
-            </tr>
-            <tr>
-                <td>Service Category:</td>
-                <td><select name="city" id="form_sertype" >
-                        <option value="Other">Other</option>
-                        <option value="Audiologist">Audiologist</option>
-                        <option value="Cardiologist ">Cardiologist </option>
-                        <option value="Dentist">Dentist</option>
-                        <option value=" Ear, Nose, Throat Doctor (ENT)">Ear, Nose, Throat Doctor (ENT)</option>
-                        <option value="Eye Doctor">Eye Doctor</option>
-                        <option value=" Gastroenterologist">Gastroenterologist </option>
-                        <option value="Neurosurgeon">Neurosurgeon</option>
-                        <option value=" Orthopedic ">Orthopedic</option>
-                        <option value=" Primary Care Doctor"> Primary Care Doctor</option>
-                        <option value=" Psychiatrist">Psychiatrist</option> 
-                        <option value=" Radiologist">Radiologist</option>
-                        <option value=" Surgeon"> Surgeon</option>
-                    </select>
-                </td>
-                <td>Service Description:</td>
-                <td><input type="text" name="name" placeholder="Last Name" id="form_serdes" required/></td>
-            </tr>
-        </table>
-    </div>
-</div>
-<div class="container">
-    <div class="col-lg-12">
-        <h2 class="hs_heading">Practice Information</h2>
-        <table class="col-lg-12">
-            <tr>
-                <td>Qualifications: </td>
-                <td><input class="formtd" type="text" name="name" placeholder="Qualifications (seperate with comma)" id="form_qualifications" required/></td>
-            </tr>
-            <tr>
-                <td>Specialities: </td>
-                <td><input type="text" name="name" placeholder="Specialities (seperate with comma)" id="form_specialities"/></td>
-            </tr>
-            <tr>
-                <td>Hospital Affilications: </td>
-                <td><input type="text" name="name" placeholder="Hospital Names(seperate with comma)" id="form_hospitals" required/></td>
-            </tr>
-            <tr>
-                <td>Languages: </td>
-                <td><input type="text" name="name" placeholder="Language Spoken (seperate with comma)" id="form_language"/></td>
-            </tr>
-            <tr>
-                <td>Professional Satement: </td>
-                <td><textarea id="form_prostate" rows="5" cols="400" placeholder="Describe yourself here..."></textarea></td>
-            </tr>
-            <tr>
-                <td>Short Bio: </td>
-                <td><textarea id="form_shortbio" rows="2" cols="200" placeholder=" Briefly Describe yourself here..."></textarea></td>
-            </tr>
-        </table>
-    </div>
-</div>
-
+<!-- Button to save new person info -->
 <div class="container">
     <div class="col-lg-12" align="center" style="padding-top:30px;">
-        <div class="btn btn-default" id="save_newDoctor" align="center">Save Informations</div>
+        <div class="btn btn-default" id="save_newperinfo" align="center">Save Information</div>
     </div>
+</div>
+<div class="col-lg-12">
+    <h2 class="hs_heading">Basic Health Information</h2>
+    <table class="col-lg-12">
+        <input type="hidden" name="name" id="form_u_id" value="<?php echo htmlspecialchars($_SESSION['u_id']); ?>" disabled/>
+
+        <tr>
+            <td>Date of Birth:</td>
+            <td><input type="date" id="form_dob"/></td>
+            <td>Gender: </td>
+            <td><select name="city" id="form_gender" >
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+            <br>
+        </tr>
+        <tr>
+            <td>Blood Group:</td>
+            <td><select name="city" id="form_bloodgroup" >
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td>Weight (in kilograms):</td>
+        <td><input class="formtd" type="number" name="name" placeholder="00" id="form_weight" /></td>
+        <td>Height (in inches):</td>
+        <td><input class="formtd" type="number" name="name" placeholder="00" id="form_height" /></td>
+    </tr>
+    <tr>
+        <td><br>Note: Estimates are fine for weight and height if exact values are not known</td>
+    </tr>
+</table>
+</div>
+</div>
+<!-- Button to save basic health info -->
+<div class="container">
+    <div class="col-lg-12" align="center" style="padding-top:30px;">
+        <div class="btn btn-default" id="save_basic" align="center">Save Information</div>
+    </div>
+</div>
+<div class="container">
+    <div class="col-lg-12">
+        <h2 class="hs_heading">Additional Health Information</h2>
+        <h5>History of disease and illness</h5>
+        <h5>Select the appropriate box where you or a family member have any of the following:</h5>
+        <br>
+        <table class="col-lg-12">
+            <tr>
+            </tr>
+            <tr>
+                <td>Illness</td>
+                <td>You</td>
+                <td>Family Member</td>
+            </tr>
+            <tr>
+                <td>Diabetes</td>
+                <td><input type="checkbox" id="form_diabetes_own" ></td>
+                <td><input type="checkbox" id="form_diabetes_fam" ></td>
+            </tr>
+            <tr>
+                <td>Heart Disease</td>
+                <td><input type="checkbox" id="form_heart_own" ></td>
+                <td><input type="checkbox" id="form_heart_fam" ></td>
+            </tr>
+            <tr>
+                <td>High Choltestrol</td>
+                <td><input type="checkbox" id="form_cholestrol_own" ></td>
+                <td><input type="checkbox" id="form_cholestrol_fam" ></td>
+            </tr>
+            <tr>
+                <td>High Blood Pressure</td>
+                <td><input type="checkbox" id="form_bp_own" ></td>
+                <td><input type="checkbox" id="form_bp_fam" ></td>
+            </tr>
+            <tr>
+                <td>Asthma</td>
+                <td><input type="checkbox" id="form_asthma_own" ></td>
+                <td><input type="checkbox" id="form_asthma_fam" ></td>
+            </tr>
+            <tr>
+                <td>Heart Attack</td>
+                <td><input type="checkbox" id="form_heartack_own" ></td>
+                <td><input type="checkbox" id="form_heartack_fam" ></td>
+            </tr>
+            <tr>
+                <td>Stroke</td>
+                <td><input type="checkbox" id="form_stroke_own" ></td>
+                <td><input type="checkbox" id="form_stroke_fam" ></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<!-- Button to save additional health info -->
+<div class="container">
+    <div class="col-lg-12" align="center" style="padding-top:30px;">
+        <div class="btn btn-default" id="save_history" align="center">Save Information</div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="col-lg-12">
+        <!-- an empty div -->
+    </div>
+</div>
+<div class="container">
+    <div class="col-lg-12">
+        <!-- an empty div -->
+    </div>
+    <input type="hidden" name="myInput" readonly="readonly" placeholder="Select Appointment Date" id="app_date" /> 
 </div>
 
 
 
-
-<?php include("footer.php");
+<?php include("footermenu.php");include("footer.php");?>

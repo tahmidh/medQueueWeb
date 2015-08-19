@@ -1,4 +1,4 @@
-<?php
+<?php 
 session_start();
 include("header.php");
 include ("menu.php");?>
@@ -19,11 +19,11 @@ include ("menu.php");?>
             <input type="hidden" name="name" id="form_u_id" value="<?php echo htmlspecialchars($_SESSION['u_id']); ?>" disabled/>
             <tr>
                 <td>First Name:</td>
-                <td><input class="formtd" type="text" name="name" placeholder="First Name" id="form_fname" required/></td>
+                <td><input class="formtd" type="text" name="name" placeholder="Desgination and First Name" id="form_fname" required/></td>
                 <td>Last Name:</td>
                 <td><input type="text" name="name" placeholder="Last Name" id="form_lname" required/></td>
                 <td>User Name:</td>
-                <td><input type="text" name="name" placeholder="Middle Name" id="form_uname" value="<?php echo htmlspecialchars($_SESSION['u_name']); ?>" disabled/></td>
+                <td><input type="text" name="name" placeholder="Username" id="form_uname" value="<?php echo htmlspecialchars($_SESSION['u_name']); ?>" disabled/></td>
             </tr>
             <tr>
                 <td>Email:</td>
@@ -59,6 +59,7 @@ include ("menu.php");?>
             </tr>
         </table>
     </div>
+    
 </div>
 <div class="container">
     <div class="col-lg-12" align="center" style="padding-top:30px;">
@@ -75,7 +76,7 @@ include ("menu.php");?>
                 <td>Service Duration:</td>
                 <td><input class="formtd" type="text" name="name" placeholder="Service Name" id="form_duration" required/></td>
                 <td>Service Price:</td>
-                <td><input class="formtd" type="text" name="name" placeholder="Service Name" id="form_price" required/></td>
+                <td><input class="formtd" type="text" name="name" placeholder="Service Name" id="form_price" /></td>
             </tr>
             <tr>
                 <td>Service Category:</td>
@@ -93,12 +94,12 @@ include ("menu.php");?>
                         <option value=" Psychiatrist">Psychiatrist</option> 
                         <option value=" Radiologist">Radiologist</option>
                         <option value=" Surgeon"> Surgeon</option>
-                    </select>
+                        <option value=" Oncologist"> Oncologist</option>
                 </td>
                 <td>Service Description:</td>
-                <td><input type="text" name="name" placeholder="Service Description" id="form_serdes" /></td>
+                <td><input type="text" name="name" placeholder="Service Description" id="form_serdes" value="Default" disabled/></td>
                 <td>Currency:</td>
-                <td><input type="text" name="name" placeholder="Service Description" id="form_currency" /></td>
+                <td><input type="text" name="name" placeholder="Service Description" id="form_currency" value="taka" disabled/></td>
             </tr>
         </table>
     </div>
@@ -140,6 +141,7 @@ include ("menu.php");?>
                         <option value=" Psychiatrist">Psychiatrist</option> 
                         <option value=" Radiologist">Radiologist</option>
                         <option value=" Surgeon"> Surgeon</option>
+                        <option value=" Oncologist"> Oncologist</option>
                     </select>
                 </td>
                 <td>Description:</td>
@@ -177,12 +179,20 @@ include ("menu.php");?>
                 <td>Short Bio: </td>
                 <td><textarea id="form_shortbio" rows="2" cols="200" placeholder=" Briefly Describe yourself here..."></textarea></td>
             </tr>
+            <tr>
+                <td>Image Upload: </td>
+                <td><form action="forms/uploads.php" method="post" enctype="multipart/form-data">
+                    Select image to upload:
+                    <input type="file" name="fileToUpload" id="fileToUpload">
+                    <input type="submit" value="Upload Image" id="upsubmit">
+            </form></td>
+            </tr>
         </table>
     </div>
 </div>
 <div class="container">
     <div class="col-lg-12" align="center" style="padding-top:30px;">
-        <div class="btn btn-default" id="save_newperinfo" align="center">Save Personal Info</div>
+        <div class="btn btn-default" id="save_newproinfo" align="center">Save Personal Info</div>
     </div>
 </div>
 <div class="container">
@@ -255,44 +265,44 @@ include ("menu.php");?>
             <tr>
                 <td><input type="checkbox" id="bc_day0" value="Saturday"></td>
                 <td>Saturday</td>
-                <td><input type="time" placeholder="00.00" value="13:00:00" id="bs_day0"/></td>
-                <td><input type="time" placeholder="00.00" value="14:00:00" id="be_day0"/></td>
+                <td><input type="time" placeholder="00.00" value="13:00" id="bs_day0"/></td>
+                <td><input type="time" placeholder="00.00" value="14:00" id="be_day0"/></td>
             </tr>
             <tr>
                 <td><input type="checkbox" id="bc_day1" value="Sunday"></td>
                 <td>Sunday</td>
-                <td><input type="time" placeholder="00.00" value="13:00:00" id="bs_day1"/></td>
-                <td><input type="time" placeholder="00.00" value="14:00:00" id="be_day1"/></td>
+                <td><input type="time" placeholder="00.00" value="13:00" id="bs_day1"/></td>
+                <td><input type="time" placeholder="00.00" value="14:00" id="be_day1"/></td>
             </tr>
             <tr>
                 <td><input type="checkbox" id="bc_day2" value="Monday"></td>
                 <td>Monday</td>
-                <td><input type="time" placeholder="00.00" value="13:00:00" id="bs_day2"/></td>
-                <td><input type="time" placeholder="00.00" value="14:00:00" id="be_day2"/></td>
+                <td><input type="time" placeholder="00.00" value="13:00" id="bs_day2"/></td>
+                <td><input type="time" placeholder="00.00" value="14:00" id="be_day2"/></td>
             </tr>
             <tr>
                 <td><input type="checkbox" id="bc_day3" value="Tuesday"></td>
                 <td>Tuesday</td>
-                <td><input type="time" placeholder="00.00" value="13:00:00" id="bs_day3"/></td>
-                <td><input type="time" placeholder="00.00" value="14:00:00" id="be_day3"/></td>
+                <td><input type="time" placeholder="00.00" value="13:00" id="bs_day3"/></td>
+                <td><input type="time" placeholder="00.00" value="14:00" id="be_day3"/></td>
             </tr>
             <tr>
                 <td><input type="checkbox" id="bc_day4" value="Wednesday"></td>
                 <td>Wednesday</td>
-                <td><input type="time" placeholder="00.00" value="13:00:00" id="bs_day4"/></td>
-                <td><input type="time" placeholder="00.00" value="14:00:00" id="be_day4"/></td>
+                <td><input type="time" placeholder="00.00" value="13:00" id="bs_day4"/></td>
+                <td><input type="time" placeholder="00.00" value="14:00" id="be_day4"/></td>
             </tr>
             <tr>
                 <td><input type="checkbox" id="bc_day5" value="Thursday"></td>
                 <td>Thursday</td>
-                <td><input type="time" placeholder="00.00" value="13:00:00" id="bs_day5"/></td>
-                <td><input type="time" placeholder="00.00" value="14:00:00" id="be_day5"/></td>
+                <td><input type="time" placeholder="00.00" value="13:00" id="bs_day5"/></td>
+                <td><input type="time" placeholder="00.00" value="14:00" id="be_day5"/></td>
             </tr>
             <tr>
                 <td><input type="checkbox" id="bc_day6" value="Friday"></td>
                 <td>Friday</td>
-                <td><input type="time" placeholder="00.00" value="13:00:00" id="bs_day6"/></td>
-                <td><input type="time" placeholder="00.00" value="14:00:00" id="be_day6"/></td>
+                <td><input type="time" placeholder="00.00" value="13:00" id="bs_day6"/></td>
+                <td><input type="time" placeholder="00.00" value="14:00" id="be_day6"/></td>
             </tr>
         </table>
     </div>
@@ -306,9 +316,6 @@ include ("menu.php");?>
 
 
 
-
 <?php 
 include("footermenu.php");
 include("footer.php");
-
-?>

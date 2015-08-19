@@ -4,6 +4,15 @@ include("header.php");
 include ("menu.php");
 //include ("slider.php");
 include('forms/dbcon_s.php');
+if (isset($_GET['id'])) {
+  $user_id = $_GET['id'];
+}
+else {
+  // other php instructions
+}
+
+$get_doctor_details=mysql_query("SELECT * FROM user_details as u,pictures as p,doc_workplan as dw,doc_services as ds,doc_qualifications as dq WHERE user_details.login_id = '$user_id' AND pictures.u_id = '$user_id' AND doc_workplan.user_id = '$user_id' AND doc_services.user_id = '$user_id' AND doc_qualifications.user_id = '$user_id'");
+
 ?>
 
 <div class="hs_page_title">

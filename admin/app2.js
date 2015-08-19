@@ -5,7 +5,7 @@
         print_prescription();
     });  
 
-    //**********************************************
+    //****************Omar starts******************************
     function print_prescription(sta)
     {
         var app_fname = $("#f2_name").val();
@@ -67,7 +67,7 @@
          alert(sessionFromServer);
      });      
     }
-    //**********************************************
+    //*******************Tahmid starts***************************
 
     $( "#keyword_id" ).keyup(function() {
         autocomplete();
@@ -105,5 +105,6 @@
     $('#keyword_list_id').hide();
 }
 
+/********************khaled starts **************/
 
 });

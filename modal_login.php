@@ -10,12 +10,12 @@
         <div class="row-fluid">
             <div class="row-form">
                 <div class="span12">
-                    <input type="text" name="login" placeholder="Login" id="s_lemail"/>
+                    <input type="text" name="login" placeholder="Email" id="s_lemail"/>
                 </div>
             </div>
             <div class="row-form">
                 <div class="span12">
-                    <input type="text" name="password" placeholder="Password" id="s_lpass"/>
+                    <input type="password" name="password" placeholder="Password" id="s_lpass"/>
                 </div>            
             </div>
             <div class="row-form">
@@ -45,7 +45,7 @@
         <div class="row-fluid">
             <div class="row-form">
                 <div class="span12">
-                    <input type="text" name="name" placeholder="Name" id="s_name"/>
+                    <input type="text" name="name" placeholder="Username" id="s_name"/>
                 </div>
             </div>
             <div class="row-form">

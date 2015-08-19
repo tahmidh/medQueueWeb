@@ -48,39 +48,155 @@ $(document).ready(function() {
     });
 
 
-    $("#s_signin").click(function() {
-        var user = $("#s_lemail").val();
-        var pass = $("#s_lpass").val();
-        console.log(user);
-        console.log(pass);
-        $.ajax({
-                method: "POST",
-                url: "forms/login_check.php",
-                data: {
-                    user: user,
-                    pass: pass
-                }
-            })
-            .done(function(msg) {
-                if (msg == "doctor") {
-                    window.location = "doctor.php";
-                } else if (msg == "newDoctor") {
-                    window.location = "newdoctor.php";
-                } else if (msg == "newPatient") {
-                    window.location = "newpatient.php";
-                } else if (msg == "patient") {
-                    window.location = "patient.php";
-                } else {
-                    $("#login_msg").append("<p style='color:red'>   Login failed    </p>");
-                };
-            });
+    $("#s_signin").click(function()
+    {
+        var user =$("#s_lemail").val();
+        var pass =$("#s_lpass").val();
+        login(user, pass);  
     });
 
+    function login (email, pass){
+        $.ajax({  method: "POST",  url: "forms/login_check.php",  data: { user:email, pass:pass }})
+        .done(function( msg ) {
+            if (msg=="doctor") {
+             window.location = "doctor.php";
+         }else if (msg=="newDoctor") {
+          window.location = "newdoctor.php";
+      }else if (msg=="newPatient") {
+          window.location = "newpatient.php";
+      }else if (msg=="patient") {
+          window.location = "patient.php";
+      }else{
+          $("#login_msg").append("<p style='color:red'>   Login failed    </p>");
+      };
+  });
+    }
 
-    $("#save_newDoctor").click(function() {
+    $("#save_newperinfo").click(function()
+    {
         add_personal_details();
+    });
+    $("#save_newproinfo").click(function()
+    {
         add_professional_details();
     });
+    $("#save_newService").click(function()
+    {
+        add_service_details();
+    });
+    $("#save_work").click(function() {
+        alert("service Clicked!!!");
+        add_work();
+    });
+    $("#save_basic").click(function()
+    {
+        add_basic();
+    });
+    $("#save_history").click(function()
+    {
+        add_history();
+    });
+
+    function add_basic(){
+        var login_id=$("#form_u_id").val();
+        var dob=$("#form_dob").val();
+        var gender=$("#form_gender").val();
+        var bloodgroup=$("#form_bloodgroup").val();
+        var weight=$("#form_weight").val();
+        var height=$("#form_height").val();
+        $.ajax({  method: "POST",  url: "forms/savePatientHealth.php",  data: {
+            dob:dob,gender:gender,bloodgroup:bloodgroup,weight:weight,height:height, login_id:login_id
+        }})
+        .done(function( msg ) {
+            alert( "personal info Saved: " + msg );
+        });
+    }
+
+    function add_history(){
+
+        var login_id=$("#form_u_id").val();
+
+        if ($("#form_diabetes_own").is(":checked") == true) {
+            var diabetes_own="yes";
+        }else{
+            var diabetes_own="no";
+        }
+
+        if ($("#form_diabetes_fam").is(":checked") == true) {
+            var diabetes_fam="yes";
+        }else{
+            var diabetes_fam="no";
+        }
+
+        if ($("#form_heart_own").is(":checked") == true) {
+            var heart_own="yes";
+        }else{
+            var heart_own="no";
+        }
+
+        if ($("#form_heart_fam").is(":checked") == true) {
+            var heart_fam="yes";
+        }else{
+            var heart_fam="no";
+        }
+
+        if ($("#form_cholestrol_own").is(":checked") == true) {
+            var cholestrol_own="yes";
+        }else{
+            var cholestrol_own="no";
+        }
+
+        if ($("#form_cholestrol_fam").is(":checked") == true) {
+            var cholestrol_fam="yes";
+        }else{
+            var cholestrol_fam="no";
+        }
+
+        if ($("#bp_own").is(":checked") == true) {
+            var bp_own="yes";
+        }else{
+            var bp_own="no";
+        }
+
+        if ($("#form_bp_fam").is(":checked") == true) {
+            var bp_fam="yes";
+        }else{
+            var bp_fam="no";
+        }
+
+        if ($("#form_heartack_own").is(":checked") == true) {
+            var heartack_own="yes";
+        }else{
+            var heartack_own="no";
+        }
+
+        if ($("#form_heartack_fam").is(":checked") == true) {
+            var heartack_fam="yes";
+        }else{
+            var heartack_fam="no";
+        }
+
+        if ($("#form_stroke_own").is(":checked") == true) {
+            var stroke_own="yes";
+        }else{
+            var stroke_own="no";
+        }
+
+        if ($("#form_stroke_fam").is(":checked") == true) {
+            var stroke_fam="yes";
+        }else{
+            var stroke_fam="no";
+        }
+
+        $.ajax({  method: "POST",  url: "forms/savePatientHistory.php",  data: {
+            diabetes_own:diabetes_own,diabetes_fam:diabetes_fam,heart_own:heart_own,heart_fam:heart_fam,cholestrol_own:cholestrol_own,
+            cholestrol_fam:cholestrol_fam,bp_own:bp_own,bp_fam:bp_fam,heartack_own:heart_own,heartack_fam:heartack_fam,
+            stroke_own:stroke_own,stroke_fam:stroke_fam, login_id:login_id
+        }})
+        .done(function( msg ) {
+            alert( "personal info Saved: " + msg );
+        });
+    }
 
     function add_personal_details() {
         var first_name = $("#form_fname").val();
@@ -146,12 +262,6 @@ $(document).ready(function() {
         });
 
     }
-
-    $("#save_newService").click(function() {
-        // alert("service Clicked!!!");
-        add_service_details();
-        
-    });
 
     function get_available_services(){
         var login_id = $("#form_u_id").val();
@@ -251,59 +361,54 @@ $(document).ready(function() {
         console.log(doc_id);
     });
 
-    $("#save_work").click(function() {
-        alert("service Clicked!!!");
-        add_work();
-    });
-
     function add_work() {
 
-        var day = "";
-        var brk = "";
-        var stime = "";
-        var etime = "";
-        var bstime = "";
-        var betime = "";
-        var week_day = "";
-        var week = {};
-        var login_id = $("#form_u_id").val();
+    var day = "";
+    var brk = "";
+    var stime = "";
+    var etime = "";
+    var bstime = "";
+    var betime = "";
+    var week_day = "";
+    var week = {};
+    var login_id = $("#form_u_id").val();
 
-        for (var i = 0; i < 7; i++) {
-            day = "#c_day" + i;
-            brk = "#bc_day" + i;
-            stime = "#s_day" + i;
-            etime = "#e_day" + i;
-            bstime = "#bs_day" + i;
-            betime = "#be_day" + i;
-            var day_time = "";
+    for (var i = 0; i < 7; i++) {
+        day = "#c_day" + i;
+        brk = "#bc_day" + i;
+        stime = "#s_day" + i;
+        etime = "#e_day" + i;
+        bstime = "#bs_day" + i;
+        betime = "#be_day" + i;
+        var day_time = "";
 
-            if ($(day).is(":checked") == true) {
-                var break_time = {
-                    "start": $(bstime).val(),
-                    "end": $(betime).val()
-                };
-                day_time = {
-                    "start": $(stime).val(),
-                    "end": $(etime).val(),
-                    "break": break_time
-                };
-            }
-            var d = $(day).val();
-            week[d] = day_time;
-        };
-        var result = JSON.stringify(week);
-        $.ajax({
-                method: "POST",
-                url: "forms/saveWorkPlan.php",
-                data: {
-                    workplan: result,
-                    login_id: login_id
-                }
-            })
-            .done(function(msg) {
-                alert("WorkPlan Saved: " + msg);
-            });
-    }
+        if ($(day).is(":checked") == true) {
+            var break_time = {
+                "start": $(bstime).val()+":00",
+                "end": $(betime).val()+":00"
+            };
+            day_time = {
+                "start": $(stime).val()+":00",
+                "end": $(etime).val()+":00",
+                "break": break_time
+            };
+        }
+        var d = $(day).val();
+        week[d] = day_time;
+    };
+    var result = JSON.stringify(week);
+    $.ajax({
+        method: "POST",
+        url: "forms/saveWorkPlan.php",
+        data: {
+            workplan: result,
+            login_id: login_id
+        }
+    })
+    .done(function(msg) {
+        alert("WorkPlan Saved: " + msg);
+    });
+}
 
 
 
@@ -525,5 +630,7 @@ $(document).ready(function() {
         today = yyyy + '-' + mm + '-' + dd;
         return today;
     }
+
+
 
 });
