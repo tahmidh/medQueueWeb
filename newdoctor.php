@@ -302,7 +302,7 @@ include ("menu.php");?>
         <div class="btn btn-default" id="save_work" align="center">Save Work</div>
         <input type="hidden" name="myInput" readonly="readonly" placeholder="Select Appointment Date" id="app_date" /> 
     </div>
-</div><input type="date" 
+</div>
 
 
 
