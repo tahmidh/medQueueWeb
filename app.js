@@ -59,13 +59,13 @@ $(document).ready(function() {
         $.ajax({  method: "POST",  url: "forms/login_check.php",  data: { user:email, pass:pass }})
         .done(function( msg ) {
             if (msg=="doctor") {
-             window.location = "doctor.php";
+             window.location = "admin/doctordash.php";
          }else if (msg=="newDoctor") {
           window.location = "newdoctor.php";
       }else if (msg=="newPatient") {
           window.location = "newpatient.php";
       }else if (msg=="patient") {
-          window.location = "patient.php";
+          window.location = "patientpro.php";
       }else{
           $("#login_msg").append("<p style='color:red'>   Login failed    </p>");
       };
@@ -330,6 +330,36 @@ $(document).ready(function() {
             alert(sessionFromServer);
         });
     }
+    
+    /*******************************Tahmid's Edit*********************/
+    $("#select_location").change(function(){
+        var select_loc = $("#select_location").val();
+        if(select_loc == "all"){
+            $.ajax({
+                method: "POST",
+                url: "forms/getCategory.php",
+                data: {}
+            })
+            .done(function(text) {
+                console.log("Select category received: " + text);
+                $('#select_dep').append(text);
+            });
+        }else{
+            if($('#select_dep').length == 1 ){
+                $('#select_dep').html('<option>Select Category</option>');
+            }
+            $.ajax({
+                method: "POST",
+                url: "forms/getCategoryByLocation.php",
+                data: {location:select_loc}
+            })
+            .done(function(text) {
+                console.log("Select category received: " + text);
+                $('#select_dep').append(text);
+            });
+        }
+    });
+    /*******************************Tahmid's Edit*********************/
 
     $("#select_dep").change(function() {
         var text = JSON.parse($("#select_dep").val());
@@ -411,7 +441,14 @@ $(document).ready(function() {
 }
 
 
-
+/***********************Omar Khan Edit********************************/
+    $("#btn_nextZero").click(function() {
+        $("#frame-0").css("display", "none");
+        $("#frame-1").css("display", "block")
+        ;
+    });
+    
+/***********************Omar Khan Edit********************************/
     $("#btn_nextOneModal").click(function() {
         doc_id = $(modal_selectProvider).val();
         $("#frame-1").css("display", "none");
@@ -630,7 +667,11 @@ $(document).ready(function() {
         today = yyyy + '-' + mm + '-' + dd;
         return today;
     }
-
-
+    $("#getting-started")
+    .countdown("2016/01/01", function(event) {
+       $(this).text(
+         event.strftime('%D days %H:%M:%S')
+         );
+   });
 
 });

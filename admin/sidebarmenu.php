@@ -16,17 +16,16 @@
                 <ul class="navigation">         
                     <li class="active"><a href="index-2.html" class="blblue">Dashboard</a></li>
                     <li>
-                        <a href="#" class="blyellow">UI Elements</a>
-                        <div class="open"></div>
-                        <ul>
-                            <li><a href="ui.html">UI Elements</a></li>
-                            <li><a href="widgets.html">Widgets</a></li>
-                            <li><a href="buttons.html">Buttons</a></li>
-                            <li><a href="icons.html">Icons</a></li>
-                            <li><a href="grid_sys.html">Grid System</a></li>
-                        </ul>
+                        <a href="#" class="blyellow">Todays Appointment</a>
+                        <a href="#" class="blyellow">Open Prescription</a>
+                        <a href="#" class="blyellow">My Profile</a>
+                        <a href="#" class="blyellow">Billing</a>
+                        <a href="#" class="blyellow">Send Sms</a>
+                        <a href="#" class="blyellow">Send Email</a>
+                        <a href="#" class="blyellow">Settings</a>
+                        <!--div class="open"></div-->
                     </li>
-                    <li>
+                    <!--li>
                         <a href="#" class="blgreen">Forms Stuff</a>
                         <div class="open"></div>
                         <ul>
@@ -63,7 +62,7 @@
                             <li><a href="typography.html">Typography</a></li>
                             <li><a href="404.html">Error 404</a></li>
                         </ul>
-                    </li>
+                    </li-->
                 </ul>
                 <a class="close">
                     <span class="ico-remove"></span>

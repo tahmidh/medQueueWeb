@@ -1,9 +1,5 @@
 <?php 
 include('dbcon_s.php'); 
-/*diabetes_own:diabetes_own,diabetes_fam:diabetes_fam,heart_own:heart_own,heart_fam:heart_fam,cholestrol_own:cholestrol_own,
-            cholestrol_fam:cholestrol_fam,bp_own:bp_own,bp_fam:bp_fam,heartack_own:heart_own,heartack_fam:heartack_fam,
-            stroke_own:stroke_own,stroke_fam:stroke_fam */
-
 
 $diabetes_own=$_POST['diabetes_own'];
 $diabetes_fam=$_POST['diabetes_fam'];
@@ -28,5 +24,17 @@ if($query)
 {
 	echo mysql_error();	
 }
+
+$query_str="UPDATE user_login set first = 'false' WHERE uid = '$login_id'";
+$query=mysql_query($query_str);
+
+if($query)
+{
+}else
+{
+	echo mysql_error();	
+}
+
+
 
 ?>

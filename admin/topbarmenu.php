@@ -1,6 +1,6 @@
 <div class="body">
-
-        <ul class="navigation">
+        <div style="height:80px"></div>
+        <!--ul class="navigation">
                 <li>
                     <a href="index-2.html" class="button">
                         <div class="icon">
@@ -123,4 +123,4 @@
                         </div>                        
                     </div>
                 </li>                
-            </ul>
+            </ul-->

@@ -4,11 +4,12 @@ include("header.php");
 include ("menu.php");
 include ("slider.php");
 include('forms/dbcon_s.php');
-$get_services_category=mysql_query("SELECT service_categories FROM doc_services GROUP BY service_categories");
+
+$get_doctor_list=mysql_query("SELECT pictures.path,user_details.login_id, user_details.address,user_details.first_name,user_details.last_name,doc_qualifications.shortbio,doc_qualifications.specialities FROM pictures,doc_qualifications,user_details WHERE login_id in (SELECT uid FROM user_login WHERE u_type='doctor') AND user_details.login_id = doc_qualifications.user_id AND user_details.login_id = pictures.u_id;");
 ?>
 <div class="container"> 
   <!--service start-->
- 
+
   <!--service end-->
   
   <div class="row"> 
@@ -33,72 +34,87 @@ $get_services_category=mysql_query("SELECT service_categories FROM doc_services 
                   <p>You can access our website from any platform, be it PC, Mobile or Tablet</p>
                   <div class="hs_margin_30"></div>
                   <a href="#" class="btn btn-default">Read More</a> </div>
-              </div>
-            </div>
-          </div>
-          <div class="tab-pane fade" id="services2">
-            <div class="row">
-              <div class="col-lg-12 col-md-12 col-sm-12">
-                <div class="col-lg-6 col-md-6 col-sm-6">
-                  <h4 class="hs_theme_color">Queue Management .</h4>
-                  <div class="hs_margin_30"></div>
-                  <p>Never miss your queue</p>
-                  <p>We will send you a SMS before your time to see the doctor. If you miss it, you can re-schedule from home. </p>
-                  <div class="hs_margin_30"></div>
-                  <a href="#" class="btn btn-default">Read More</a> </div>
-                <div class="col-lg-6 col-md-6 col-sm-6"> <img width="228" height="252" src="images/service/1.jpg" alt="" /> </div>
-              </div>
-            </div>
-          </div>
-          <div class="tab-pane fade" id="services3">
-            <div class="row">
-              <div class="col-lg-12 col-md-12 col-sm-12"> <img width="512" height="252" src="images/service/2.jpg" alt="" />
-                <h4 class="hs_theme_color">Billing .</h4>
-                <p>All Billing systems are automated</p>
-                <p>Get your billing informations from home. </p>
-                <a href="#" class="btn btn-default">Read More</a> </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!--what we do end--> 
-    <!--Book an Appointment start-->
-    <div class="col-lg-6 col-md-5 col-sm-12">
-      <h4 class="hs_heading">Book an Appointment</h4>
-      <div class="hs_appointment_form_div"> <img src="images/bg/appointment_form.jpg" width="512" height="365" alt=""/>
-        <div class="hs_appointment_form" style="padding-left: 40px;padding-top: 40px;">
-          
-            <div id="frame-1" style="display:block;">
-              <div class="row frame-container">
-                <div class="col-lg-6 col-md-7 col-sm-6">
-                  <div class="form-group">
-                    <select class="form-control" id="select_dep" name="select_dep">
-                      <option>Select Category</option>
-                      <?php 
-                      
-                        while($row=mysql_fetch_array($get_services_category)){
-                          echo '<optgroup label="' . $row['service_categories']. '">';
-                            $get_sub_category = mysql_query("SELECT name, service_categories FROM doc_services WHERE service_categories = '".$row['service_categories']."' GROUP BY name");
-                            while($row=mysql_fetch_array($get_sub_category)){
-                              $values_arr = array('s_name' => $row['name'], 's_category' => $row['service_categories']);
-                              echo "<option value='".json_encode($values_arr)."'>". $row['name'] . "</option>";
-                            } 
-                          echo '</optgroup>';
-                        }
-                      ?>
-                    </select>
-                  </div>
-                  <div class="form-group">
-                      <select id="select-provider" class="form-control"></select>
-                  </div>
-                  
                 </div>
-              </div><!-- end of frame container -->
+              </div>
+            </div>
+            <div class="tab-pane fade" id="services2">
               <div class="row">
-                <div class="col-lg-3 col-md-4 col-sm-3">
-                  <button class="btn btn-default" id="btn_nextOne">Next</button>
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                  <div class="col-lg-6 col-md-6 col-sm-6">
+                    <h4 class="hs_theme_color">Queue Management .</h4>
+                    <div class="hs_margin_30"></div>
+                    <p>Never miss your queue</p>
+                    <p>We will send you an SMS before it is your time to see the doctor. If you miss it, you can re-schedule from home. </p>
+                    <div class="hs_margin_30"></div>
+                    <a href="#" class="btn btn-default">Read More</a> </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6"> <img width="228" height="252" src="images/service/1.jpg" alt="" /> </div>
+                  </div>
                 </div>
+              </div>
+              <div class="tab-pane fade" id="services3">
+                <div class="row">
+                  <div class="col-lg-12 col-md-12 col-sm-12"> <img width="512" height="252" src="images/service/2.jpg" alt="" />
+                    <h4 class="hs_theme_color">Billing .</h4>
+                    <p>All Billing systems are automated</p>
+                    <p>Get your billing information from home. </p>
+                    <a href="#" class="btn btn-default">Read More</a> </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--what we do end--> 
+          <!--Book an Appointment start-->
+          <div class="col-lg-6 col-md-5 col-sm-12">
+            <h4 class="hs_heading">Book an Appointment</h4>
+            <div class="hs_appointment_form_div"> <img src="images/bg/appointment_form.jpg" width="512" height="365" alt=""/>
+              <div class="hs_appointment_form" style="padding-left: 40px;padding-top: 40px;">
+
+                <div id="frame-0" style="display:block;">
+                  <div class="row frame-container">
+                    <div class="col-lg-6 col-md-7 col-sm-6">
+                      <div class="form-group">
+                        <select class="form-control" id="select_location" name="select_location">
+                          <option>Select Area</option>
+                          <?php 
+                          $get_services_location=mysql_query("SELECT location FROM doc_services GROUP BY location");
+                          echo "<option value='all'>All location</option>";
+                          while($row=mysql_fetch_array($get_services_location)){
+                            echo "<option value='".$row['location']."'>". $row['location'] . "</option>";
+                          }
+                          ?>
+                        </select>
+                      </div>
+                    </div>
+                  </div><!-- end of frame container -->
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 col-sm-3">
+                      <button class="btn btn-default" id="btn_nextZero">Next</button>
+                    </div>
+                  <!-- <div class="col-lg-8 col-md-8 col-sm-8">
+                    <p>Aenean facilisis sodales est nec gravida. Morbi vitae purus non est facilisis.</p>
+                  </div> -->
+                </div> <!-- end of next button container -->
+              </div><!-- end of frame 0 -->
+              <div id="frame-1" style="display:none;">
+                <div class="row frame-container">
+                  <div class="col-lg-6 col-md-7 col-sm-6">
+                    <div class="form-group">
+                      <select class="form-control" id="select_dep" name="select_dep">
+                        <option>Select Category</option>
+
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <select id="select-provider" class="form-control"></select>
+                    </div>
+
+                  </div>
+                </div><!-- end of frame container -->
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 col-sm-3">
+                    <button class="btn btn-default" id="btn_nextOne">Next</button>
+                  </div>
                 <!-- <div class="col-lg-8 col-md-8 col-sm-8">
                   <p>Aenean facilisis sodales est nec gravida. Morbi vitae purus non est facilisis.</p>
                 </div> -->
@@ -130,110 +146,99 @@ $get_services_category=mysql_query("SELECT service_categories FROM doc_services 
               <div class="row frame-container"> <!-- start of frame container -->
                 <div class="col-lg-6 col-md-7 col-sm-6">
                   <div class="form-group">
-                     <label for="first-name" class="control-label">Full Name *</label>
-                      <?php if ($_SESSION != null) { ?>
-                        <input type="hidden" name="name" id="f2_user_id" value="<?php echo htmlspecialchars($_SESSION['u_id']); ?>" disabled/>
-                        <input type="text" id="f2_name" class="required form-control" maxlength="100" value="<?php echo htmlspecialchars($_SESSION['u_name']); ?>" disabled>
-                      <?php }else{
-                        ?>
-                        <input type="hidden" name="name" id="f2_user_id" value="0" disabled/>
-                        <input type="text" id="f2_name" class="required form-control" maxlength="100">
-                        <?php
-                      } ?>
-                  </div>
-                  <div class="form-group">
-                      <label for="email" class="control-label">Email *</label>
-                      <?php if ($_SESSION != null) { ?>
-                        <input type="text" id="f2_email" class="required form-control" maxlength="250" value="<?php echo htmlspecialchars($_SESSION['u_email']); ?>" disabled>
-                      <?php }else{
-                        ?>
-                        <input type="text" id="f2_email" class="required form-control" maxlength="250">
-                        <?php
-                      } ?>
-                  </div>
-                  <div class="form-group">
-                      <label for="phone-number" class="control-label">Phone Number *</label>
-                      <input type="text" id="f2_phone" class="required form-control" maxlength="60">
-                  </div>
-                  <div class="form-group">
-                      <label for="phone-number" class="control-label">Reason *</label>
-                      <input type="text" id="f2_reason" class="required form-control" maxlength="60">
-                  </div>
+                   <label for="first-name" class="control-label">Full Name *</label>
+                   <?php if ($_SESSION != null) { ?>
+                   <input type="hidden" name="name" id="f2_user_id" value="<?php echo htmlspecialchars($_SESSION['u_id']); ?>" disabled/>
+                   <input type="text" id="f2_name" class="required form-control" maxlength="100" value="<?php echo htmlspecialchars($_SESSION['u_name']); ?>" disabled>
+                   <?php }else{
+                    ?>
+                    <input type="hidden" name="name" id="f2_user_id" value="0" disabled/>
+                    <input type="text" id="f2_name" class="required form-control" maxlength="100">
+                    <?php
+                  } ?>
                 </div>
-              </div> <!-- end of frame container -->
-              <div class="row">
-                <div class="col-lg-3 col-md-4 col-sm-3">
-                  <button class="btn btn-default" id="btn_nextThree">Next</button>
+                <div class="form-group">
+                  <label for="email" class="control-label">Email *</label>
+                  <?php if ($_SESSION != null) { ?>
+                  <input type="text" id="f2_email" class="required form-control" maxlength="250" value="<?php echo htmlspecialchars($_SESSION['u_email']); ?>" disabled>
+                  <?php }else{
+                    ?>
+                    <input type="text" id="f2_email" class="required form-control" maxlength="250">
+                    <?php
+                  } ?>
                 </div>
-              </div> <!-- end of next button container -->
-            </div><!-- end of frame 3 -->
+                <div class="form-group">
+                  <label for="phone-number" class="control-label">Phone Number *</label>
+                  <input type="text" id="f2_phone" class="required form-control" maxlength="60">
+                </div>
+                <div class="form-group">
+                  <label for="phone-number" class="control-label">Reason *</label>
+                  <input type="text" id="f2_reason" class="required form-control" maxlength="60">
+                </div>
+              </div>
+            </div> <!-- end of frame container -->
+            <div class="row">
+              <div class="col-lg-3 col-md-4 col-sm-3">
+                <button class="btn btn-default" id="btn_nextThree">Next</button>
+              </div>
+            </div> <!-- end of next button container -->
+          </div><!-- end of frame 3 -->
 
-            <div id="frame-4" style="display:none;"> <!-- start of frame 4 -->
-              <div class="row frame-container"> <!-- start of frame container -->
-                <div class="col-lg-6 col-md-7 col-sm-6">
-                  <div class="form-group">
-                      
-                  </div>
-                  <div class="form-group">
-                      
-                  </div>
-                  <div class="form-group">
-                      
-                  </div>
-                  <div class="form-group">
-                      
-                  </div>
+          <div id="frame-4" style="display:none;"> <!-- start of frame 4 -->
+            <div class="row frame-container"> <!-- start of frame container -->
+              <div class="col-lg-6 col-md-7 col-sm-6">
+                <div class="form-group">
+
                 </div>
-              </div> <!-- end of frame container -->
-              <div class="row">
-                <div class="col-lg-3 col-md-4 col-sm-3">
-                  <button class="btn btn-default" id="btn_confirm">Confirm</button>
+                <div class="form-group">
+
                 </div>
-              </div> <!-- end of next button container -->
-            </div><!-- end of frame 4 -->
+                <div class="form-group">
+
+                </div>
+                <div class="form-group">
+
+                </div>
+              </div>
+            </div> <!-- end of frame container -->
+            <div class="row">
+              <div class="col-lg-3 col-md-4 col-sm-3">
+                <button class="btn btn-default" id="btn_confirm">Confirm</button>
+              </div>
+            </div> <!-- end of next button container -->
+          </div><!-- end of frame 4 -->
           
         </div>
       </div>
     </div>
-</div>
+  </div>
 
 
-<!--Our Doctor Team start-->
-<div class="row">
-  <div class="col-lg-12 col-md-12 col-sm-12">
-    <h4 class="hs_heading">Our Doctor Team</h4>
-    <div class="our_doctor_team">
-      <div id="our_doctor_team_slider" class="owl-carousel owl-theme">
-        <div class="our_doctor_team_slider_item"> <img src="images/team/team_member1.png" alt="" />
-          <div class="hs_team_member_detail">
-            <h3>Dr Johnathan Treat</h3>
-            <p>ENT Specialist</p>
-            <a href="#" class="btn btn-default">Read More</a> </div>
+  <!--Our Doctor Team start-->
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+      <h4 class="hs_heading">Our Doctor Team</h4>
+      <div class="our_doctor_team">
+        <div id="our_doctor_team_slider" class="owl-carousel owl-theme">
+
+          <?php
+          while($row=mysql_fetch_array($get_doctor_list)){
+            echo '<div class="our_doctor_team_slider_item"> <img style="width:360px;height:434px;" src="profile_pic/' . $row['path']. '" alt="" />
+            <div class="hs_team_member_detail">
+            <h4>' . $row['first_name']. ' ' . $row['last_name']. '</h4>
+            <p>' . $row['specialities']. '</p>
+            <a href="docpro.php?type=personaProfiledoc&id=' . $row['login_id']. '" class="btn btn-default" class="btn btn-default">Read More</a> </div>
+            </div>
+            ';
+          }
+          ?>
+
         </div>
-        <div class="our_doctor_team_slider_item"> <img src="images/team/team_member2.png" alt="" />
-          <div class="hs_team_member_detail">
-            <h3>Dr. Edwin Spindrift</h3>
-            <p>Cardio Vascular Sergion </p>
-            <a href="#" class="btn btn-default">Read More</a> </div>
-        </div>
-        <div class="our_doctor_team_slider_item"> <img src="images/team/team_member3.png" alt="" />
-          <div class="hs_team_member_detail">
-            <h3>Dr Johnathan Treat</h3>
-            <p>Opthalmologist</p>
-            <a href="#" class="btn btn-default">Read More</a> </div>
-        </div>
-        <div class="our_doctor_team_slider_item"> <img src="images/team/team_member1.png" alt="" />
-          <div class="hs_team_member_detail">
-            <h3>Dr. Edwin Spindrift</h3>
-            <p>Maxilo Facial Surgion</p>
-            <a href="#" class="btn btn-default">Read More</a> </div>
-        </div>
+        <div class="customNavigation text-right"> <a class="btn_prev prev"><i class="fa fa-chevron-left"></i></a> <a class="btn_next next"><i class="fa fa-chevron-right"></i></a> </div>
       </div>
-      <div class="customNavigation text-right"> <a class="btn_prev prev"><i class="fa fa-chevron-left"></i></a> <a class="btn_next next"><i class="fa fa-chevron-right"></i></a> </div>
     </div>
   </div>
-</div>
-<!--Our Doctor Team end-->
+  <!--Our Doctor Team end-->
 
 <!--Up Coming Events start>
 <div class="row">
@@ -333,7 +338,7 @@ $get_services_category=mysql_query("SELECT service_categories FROM doc_services 
 
 <div class="clearfix"></div>
 Happy Patients start-->
-<div class="row">
+<div hidden class="row">
   <div class="col-lg-12 col-md-12 col-sm-12">
     <h4 class="hs_heading">Happy Patients</h4>
     <div class="hs_testimonial">
@@ -363,7 +368,7 @@ Happy Patients start-->
           </div>
         </li>
         <li>
-        <div class="hs_testimonial_content">
+          <div class="hs_testimonial_content">
             <div class="col-lg-8 col-md-8 col-sm-8 col-lg-offset-2 col-md-offset-2 col-sm-offset-2">
               <p><i class="fa fa-quote-left"></i> Best part of MedQuque is that they can give an apprximation of the final time <i class="fa fa-quote-right"></i></p>
               <h4 class="hs_theme_color">Health Care </h4>
@@ -373,22 +378,22 @@ Happy Patients start-->
       </ul>
       <div id="bx-pager"> <a data-slide-index="0" href="#"><img src="images/testimonial/testimonial_pager.png"  alt=""/>
         <div class="hs_testimonial_control_img"></div>
-        </a> <a data-slide-index="1" href="#"><img src="images/testimonial/testimonial_pager1.png"  alt=""/>
-        <div class="hs_testimonial_control_img"></div>
-        </a> <a data-slide-index="2" href="#"><img src="images/testimonial/testimonial_pager2.png"  alt=""/>
-        <div class="hs_testimonial_control_img"></div>
-        </a> <a data-slide-index="3" href="#"><img src="images/testimonial/testimonial_pager3.png"  alt=""/>
-        <div class="hs_testimonial_control_img"></div>
-        </a> </div>
-    </div>
-  </div>
+      </a> <a data-slide-index="1" href="#"><img src="images/testimonial/testimonial_pager1.png"  alt=""/>
+      <div class="hs_testimonial_control_img"></div>
+    </a> <a data-slide-index="2" href="#"><img src="images/testimonial/testimonial_pager2.png"  alt=""/>
+    <div class="hs_testimonial_control_img"></div>
+  </a> <a data-slide-index="3" href="#"><img src="images/testimonial/testimonial_pager3.png"  alt=""/>
+  <div class="hs_testimonial_control_img"></div>
+</a> </div>
+</div>
+</div>
 </div>
 <!--Happy Patients end-->
 <span id="login_info"></span>
- 
-<?php
-  include("footermenu.php");
-  include("modal_login.php");
-  include("footer.php");
 
-  ?>
+<?php
+include("footermenu.php");
+include("modal_login.php");
+include("footer.php");
+
+?>

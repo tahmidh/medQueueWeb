@@ -16,4 +16,14 @@ if($query)
 	echo mysql_error();	
 }
 
+$query_str="UPDATE user_login set first = 'false' WHERE uid = '$login_id'";
+$query=mysql_query($query_str);
+
+if($query)
+{
+}else
+{
+	echo mysql_error();	
+}
+
 ?>

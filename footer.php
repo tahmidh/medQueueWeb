@@ -5,6 +5,7 @@
 <script type="text/javascript" src="js/owl.carousel.js"></script>
 <script type="text/javascript" src="js/jquery.bxslider.js"></script>
 <script type="text/javascript" src="js/jsDatePick.min.1.3.js"></script>
+<script type="text/javascript" src="js/jquery.countdown.min.js"></script>
 <script type="text/javascript" src="js/custom.js"></script>
 <script type="text/javascript" src="app.js"></script>
 <script type="text/javascript">

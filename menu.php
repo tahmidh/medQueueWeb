@@ -11,17 +11,17 @@
           <button type="button" class="hs_nav_toggle navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">Expand<i class="fa fa-bars"></i></button>
           <nav>
             <ul class="hs_menu collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-              <li><a class="active" href="index.html">Home</a></li>
+              <li><a class="active" href="index.php">Home</a></li>
               <li><a>Services</a>
                 <ul>
                   <li><a href="services.html">Doctor Appointment</a>
-          <ul>
-            <li><a href="services.html">Dental Clinic</a></li>
-            <li><a href="services.html">General Surgery</a></li>
-            <li><a href="services.html">Physiotherapy</a></li>
-            <li><a href="services.html">Pregnancy Care</a></li>
-          </ul>
-          </li>
+                    <ul>
+                      <li><a href="services.html">Dental Clinic</a></li>
+                      <li><a href="services.html">General Surgery</a></li>
+                      <li><a href="services.html">Physiotherapy</a></li>
+                      <li><a href="services.html">Pregnancy Care</a></li>
+                    </ul>
+                  </li>
                   <li><a href="services.html">Emergency Services</a></li>
                   <li><a href="services.html">Pharmacy</a></li>
                   <li><a href="services.html">Diagnosis Centrers</a></li>
@@ -51,10 +51,22 @@
                   <li><a href="elements.html">Associated Hospitals</a></li>
                 </ul>
               </li>
-              <li><a href="#" data-toggle="modal" data-target="#login">Login</a></li>
-              <li><a href="#" data-toggle="modal" data-target="#signup">Sign Up</a></li>
               <li><a href="contact.html">Contact</a></li>
-              <li><a href="logout.php">Log Out</a></li>
+              <?php 
+              if ($_SESSION== null){
+                ?>
+                <li><a href="#" data-toggle="modal" data-target="#login">Login</a></li>
+                <li><a href="#" data-toggle="modal" data-target="#signup">Sign Up</a></li>
+                <?php 
+              }else{
+                ?>
+                <li><a href="nowhere.php"><?php echo $_SESSION['u_name'];?></a>
+                <ul>
+                  <li><a href="logout.php">Log Out</a></li></ul></li>
+                
+                <?php
+              }
+              ?>
             </ul>
           </nav>
         </div>
@@ -71,17 +83,17 @@
               <div class="form-group has-success has-feedback">
                 <input type="text" class="form-control" id="inputSuccess4" placeholder="Search">
                 <span class="glyphicon glyphicon-search form-control-feedback"></span> </div>
-            </form>
+              </form>
+            </div>
+            
+            <!-- #logo --> 
           </div>
-          
-          <!-- #logo --> 
         </div>
+        <!-- .col-md-12 --> 
       </div>
-      <!-- .col-md-12 --> 
+      <!-- .row --> 
     </div>
-    <!-- .row --> 
-  </div>
-  <!-- .container --> 
-  
-</header>
-<!--header end--> 
+    <!-- .container --> 
+    
+  </header>
+  <!--header end--> 
